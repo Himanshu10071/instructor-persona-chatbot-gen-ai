@@ -1,10 +1,10 @@
 # Scaler Persona Chat 🎓
 
-![Scaler Persona Chat](https://img.shields.io/badge/Status-Live-brightgreen) ![Node.js](https://img.shields.io/badge/Node.js-18+-green) ![Groq](https://img.shields.io/badge/Groq-Llama--3.3--70b-blue) ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
+![Scaler Persona Chat](https://img.shields.io/badge/Status-Live-brightgreen) ![Node.js](https://img.shields.io/badge/Node.js-18+-green) ![OpenRouter](https://img.shields.io/badge/OpenRouter-GPT--4o--mini-blue) ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
 
 A persona-based AI chatbot that lets you have real conversations with three Scaler/InterviewBit personalities — **Anshuman Singh**, **Abhimanyu Saxena**, and **Kshitij Mishra**.
 
-Each persona is powered by a deeply researched system prompt with few-shot examples, chain-of-thought reasoning, and output formatting constraints. The LLM backend uses Groq's ultra-fast inference API with `llama-3.3-70b-versatile`.
+Each persona is powered by a deeply researched system prompt with few-shot examples, chain-of-thought reasoning, and output formatting constraints. The LLM backend uses OpenRouter's API with `gpt-4o-mini` for fast and cost-effective responses.
 
 ## 🔗 Live Demo
 
@@ -13,19 +13,21 @@ Each persona is powered by a deeply researched system prompt with few-shot examp
 ## ✨ Features
 
 - 🎭 **Three distinct personas** — each with unique communication style, background, and expertise
-- 💬 **Real-time chat** — powered by Groq's high-speed LLM API
+- 💬 **Real-time chat** — powered by OpenRouter's GPT-4o-mini for fast responses
 - 🔄 **Persona switcher** — tabs that reset conversation and change system prompt
 - 💡 **Suggestion chips** — quick-start questions tailored to each persona
 - ⏳ **Typing indicator** — animated dots while the API processes
 - 📱 **Mobile responsive** — works seamlessly on all screen sizes
-- 🌙 **Premium dark mode** — glassmorphism design with gradient accents
+- 🎨 **Minimalist design** — clean, modern interface with subtle animations
 - ⚠️ **Error handling** — graceful messages for API failures, rate limits, etc.
+- 📋 **Copy messages** — easily copy bot responses to clipboard
+- ⌨️ **Keyboard shortcuts** — Enter to send, Shift+Enter for new line
 
 ## 🚀 Setup & Run Locally
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) v18+
-- A [Groq API key](https://console.groq.com/) (free tier available)
+- An [OpenRouter API key](https://openrouter.ai/) (free tier available)
 - [Vercel CLI](https://vercel.com/docs/cli) (optional, for local dev)
 
 ### Steps
@@ -45,9 +47,9 @@ Each persona is powered by a deeply researched system prompt with few-shot examp
    ```bash
    cp .env.example .env
    ```
-   Then edit `.env` and add your Groq API key:
+   Then edit `.env` and add your OpenRouter API key:
    ```
-   GROQ_API_KEY=your_actual_groq_api_key
+   OPENROUTER_API_KEY=your_actual_openrouter_api_key
    ```
 
 4. **Run locally with Vercel CLI**
