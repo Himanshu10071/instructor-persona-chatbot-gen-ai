@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scaler Persona Chat — Talk to Anshuman, Abhimanyu & Kshitij</title>
+  <meta name="description" content="Chat with AI-powered personas of Scaler Academy's founders and top instructors. Get career advice, system design tips, and DSA guidance from Anshuman Singh, Abhimanyu Saxena, and Kshitij Mishra." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app" id="app">
+
+    <!-- ─── Header ─── -->
+    <header class="header" id="header">
+      <div class="header__brand">
+        <div class="header__logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1 class="header__title">Scaler Persona Chat</h1>
+      </div>
+      <div class="header__actions">
+        <button class="header__action" id="clear-chat" title="Clear conversation" aria-label="Clear conversation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="header__active-persona" id="active-persona-badge">
+          <span class="header__active-dot" id="active-dot"></span>
+          <span id="active-persona-name">Anshuman Singh</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ─── Persona Switcher ─── -->
+    <nav class="persona-nav" id="persona-nav" aria-label="Persona selection">
+      <button class="persona-tab active" data-persona="anshuman" id="tab-anshuman">
+        <span class="persona-tab__avatar" style="--persona-color: #6C63FF;">AS</span>
+        <div class="persona-tab__info">
+          <span class="persona-tab__name">Anshuman Singh</span>
+          <span class="persona-tab__title">Co-founder, Scaler</span>
+        </div>
+      </button>
+      <button class="persona-tab" data-persona="abhimanyu" id="tab-abhimanyu">
+        <span class="persona-tab__avatar" style="--persona-color: #00C9A7;">AX</span>
+        <div class="persona-tab__info">
+          <span class="persona-tab__name">Abhimanyu Saxena</span>
+          <span class="persona-tab__title">Co-founder, Scaler</span>
+        </div>
+      </button>
+      <button class="persona-tab" data-persona="kshitij" id="tab-kshitij">
+        <span class="persona-tab__avatar" style="--persona-color: #FF6B6B;">KM</span>
+        <div class="persona-tab__info">
+          <span class="persona-tab__name">Kshitij Mishra</span>
+          <span class="persona-tab__title">Head of Instructors</span>
+        </div>
+      </button>
+    </nav>
+
+    <!-- ─── Chat Area ─── -->
+    <main class="chat" id="chat-area">
+      <div class="chat__messages" id="messages-container">
+        <!-- Welcome message injected by JS -->
+      </div>
+
+      <!-- Typing indicator -->
+      <div class="typing-indicator" id="typing-indicator" style="display: none;">
+        <span class="typing-indicator__avatar" id="typing-avatar">AS</span>
+        <div class="typing-indicator__dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </main>
+
+    <!-- ─── Suggestion Chips ─── -->
+    <div class="suggestions" id="suggestions-container">
+      <!-- Chips injected by JS -->
+    </div>
+
+    <!-- ─── Input Bar ─── -->
+    <footer class="input-bar" id="input-bar">
+      <div class="input-bar__wrapper">
+        <textarea
+          class="input-bar__field"
+          id="message-input"
+          placeholder="Ask anything... (Enter to send, Shift+Enter for new line, Esc to clear)"
+          rows="1"
+          aria-label="Type your message"
+        ></textarea>
+        <button class="input-bar__send" id="send-button" aria-label="Send message" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-bar__hints">
+        <span class="input-bar__hint">💡 Try clicking the suggestion chips above or use keyboard shortcuts</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "scaler-persona-chatbot",
+  "version": "1.0.0",
+  "description": "Persona-based AI chatbot featuring Scaler/InterviewBit personalities — Anshuman Singh, Abhimanyu Saxena, Kshitij Mishra",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "build": "echo 'Static site — no build step needed'"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "openai": "^4.79.1"
+  }
+}
