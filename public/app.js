@@ -129,6 +129,17 @@ function bindEvents() {
   // Auto-focus on load
   setTimeout(() => messageInput.focus(), 100);
 
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    // Escape key clears input
+    if (e.key === "Escape" && document.activeElement === messageInput) {
+      messageInput.value = "";
+      autoResizeTextarea();
+      sendButton.disabled = true;
+      e.preventDefault();
+    }
+  });
+
   // Clear chat
   clearChatButton.addEventListener("click", () => {
     if (confirm("Are you sure you want to clear the conversation?")) {
