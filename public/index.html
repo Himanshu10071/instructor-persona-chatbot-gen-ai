@@ -8,14 +8,11 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="app" id="app">
-
-    <!-- ─── Header ─── -->
     <header class="header" id="header">
       <div class="header__brand">
         <div class="header__logo">
@@ -31,14 +28,9 @@
             <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="header__active-persona" id="active-persona-badge">
-          <span class="header__active-dot" id="active-dot"></span>
-          <span id="active-persona-name">Anshuman Singh</span>
-        </div>
       </div>
     </header>
 
-    <!-- ─── Persona Switcher ─── -->
     <nav class="persona-nav" id="persona-nav" aria-label="Persona selection">
       <button class="persona-tab active" data-persona="anshuman" id="tab-anshuman">
         <span class="persona-tab__avatar" style="--persona-color: #6C63FF;">AS</span>
@@ -63,13 +55,10 @@
       </button>
     </nav>
 
-    <!-- ─── Chat Area ─── -->
     <main class="chat" id="chat-area" role="main">
       <div class="chat__messages" id="messages-container">
-        <!-- Welcome message injected by JS -->
       </div>
 
-      <!-- Typing indicator -->
       <div class="typing-indicator" id="typing-indicator" style="display: none;">
         <span class="typing-indicator__avatar" id="typing-avatar">AS</span>
         <div class="typing-indicator__dots">
@@ -78,18 +67,15 @@
       </div>
     </main>
 
-    <!-- ─── Suggestion Chips ─── -->
     <div class="suggestions" id="suggestions-container">
-      <!-- Chips injected by JS -->
     </div>
 
-    <!-- ─── Input Bar ─── -->
     <footer class="input-bar" id="input-bar">
       <div class="input-bar__wrapper">
         <textarea
           class="input-bar__field"
           id="message-input"
-          placeholder="Ask anything... (Enter to send, Shift+Enter for new line, Esc to clear)"
+          placeholder="Ask anything..."
           rows="1"
           aria-label="Type your message"
         ></textarea>
@@ -99,9 +85,6 @@
             <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-      </div>
-      <div class="input-bar__hints">
-        <span class="input-bar__hint">💡 Try clicking the suggestion chips above or use keyboard shortcuts</span>
       </div>
     </footer>
 

@@ -1,8 +1,3 @@
-// ============================================================================
-// Scaler Persona Chat — Frontend Application Logic
-// ============================================================================
-
-// ─── State ───
 const state = {
   currentPersona: "anshuman",
   conversations: {
@@ -17,8 +12,8 @@ const state = {
       name: "Anshuman Singh",
       title: "Co-founder, Scaler & InterviewBit",
       avatar: "AS",
-      color: "#6366f1",
-      colorName: "purple",
+      color: "#2563eb",
+      colorName: "blue",
       suggestions: [
         "How should I prepare for system design interviews?",
         "I'm from a tier-3 college — can I crack FAANG?",
@@ -55,28 +50,22 @@ const state = {
   },
 };
 
-// ─── DOM Elements ───
 const messagesContainer = document.getElementById("messages-container");
 const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const typingIndicator = document.getElementById("typing-indicator");
 const typingAvatar = document.getElementById("typing-avatar");
 const suggestionsContainer = document.getElementById("suggestions-container");
-const activePersonaName = document.getElementById("active-persona-name");
-const activeDot = document.getElementById("active-dot");
 const personaTabs = document.querySelectorAll(".persona-tab");
 const clearChatButton = document.getElementById("clear-chat");
 
-// ─── Initialize ───
 function init() {
   renderWelcomeMessage();
   renderSuggestions();
   bindEvents();
 }
 
-// ─── Event Bindings ───
 function bindEvents() {
-  // Persona tab switching
   personaTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const persona = tab.dataset.persona;
@@ -86,27 +75,21 @@ function bindEvents() {
     });
   });
 
-  // Send button
   sendButton.addEventListener("click", handleSend);
 
-  // Enter key (Shift+Enter for newline, Ctrl+Enter for send)
   messageInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       if (e.shiftKey) {
-        // Allow Shift+Enter for new line
         return;
       } else if (e.ctrlKey || e.metaKey) {
-        // Ctrl+Enter or Cmd+Enter to send
         e.preventDefault();
         handleSend();
       } else {
-        // Regular Enter to send
         e.preventDefault();
         handleSend();
       }
     }
 
-    // Escape to clear input
     if (e.key === "Escape") {
       messageInput.value = "";
       autoResizeTextarea();
@@ -114,24 +97,19 @@ function bindEvents() {
     }
   });
 
-  // Auto-resize textarea & toggle send button
   messageInput.addEventListener("input", () => {
     autoResizeTextarea();
     sendButton.disabled = !messageInput.value.trim();
     state.lastActivity = Date.now();
   });
 
-  // Focus management
   messageInput.addEventListener("focus", () => {
     state.lastActivity = Date.now();
   });
 
-  // Auto-focus on load
   setTimeout(() => messageInput.focus(), 100);
 
-  // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
-    // Escape key clears input
     if (e.key === "Escape" && document.activeElement === messageInput) {
       messageInput.value = "";
       autoResizeTextarea();
@@ -140,7 +118,6 @@ function bindEvents() {
     }
   });
 
-  // Clear chat
   clearChatButton.addEventListener("click", () => {
     if (confirm("Are you sure you want to clear the conversation?")) {
       clearConversation();
@@ -148,37 +125,26 @@ function bindEvents() {
   });
 }
 
-// ─── Persona Switching ───
 function switchPersona(personaKey) {
   state.currentPersona = personaKey;
   const persona = state.personas[personaKey];
 
-  // Update tabs
   personaTabs.forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.persona === personaKey);
   });
 
-  // Update header badge
-  activePersonaName.textContent = persona.name;
-  activeDot.style.background = persona.color;
-
-  // Reset conversation for this persona (assignment requirement)
   state.conversations[personaKey] = [];
 
-  // Animate transition
   messagesContainer.classList.add("switching");
   setTimeout(() => messagesContainer.classList.remove("switching"), 300);
 
-  // Clear and show welcome
   messagesContainer.innerHTML = "";
   renderWelcomeMessage();
 
-  // Show suggestions again
   suggestionsContainer.style.display = "flex";
   renderSuggestions();
 }
 
-// ─── Clear Conversation ───
 function clearConversation() {
   state.conversations[state.currentPersona] = [];
   messagesContainer.innerHTML = "";
@@ -191,7 +157,6 @@ function clearConversation() {
   showToast("Conversation cleared!");
 }
 
-// ─── Welcome Message ───
 function renderWelcomeMessage() {
   const persona = state.personas[state.currentPersona];
   const welcomeDiv = document.createElement("div");
@@ -219,7 +184,6 @@ function renderWelcomeMessage() {
   messagesContainer.appendChild(welcomeDiv);
 }
 
-// ─── Suggestion Chips ───
 function renderSuggestions() {
   const persona = state.personas[state.currentPersona];
   suggestionsContainer.innerHTML = "";
@@ -240,22 +204,18 @@ function renderSuggestions() {
   });
 }
 
-// ─── Send Message ───
 async function handleSend() {
   const text = messageInput.value.trim();
   if (!text || state.isLoading) return;
 
   const timestamp = Date.now();
 
-  // Clear input
   messageInput.value = "";
   sendButton.disabled = true;
   autoResizeTextarea();
 
-  // Hide suggestions after first message
   suggestionsContainer.style.display = "none";
 
-  // Add user message
   state.conversations[state.currentPersona].push({
     role: "user",
     content: text,
@@ -264,10 +224,8 @@ async function handleSend() {
   appendMessageToDOM("user", text, timestamp);
   scrollToBottom();
 
-  // Show typing indicator
   showTyping();
 
-  // Call API
   state.isLoading = true;
   try {
     const response = await fetch("/api/chat", {
@@ -319,7 +277,6 @@ async function handleSend() {
   }
 }
 
-// ─── Append Message to DOM ───
 function appendMessageToDOM(role, content, timestamp = Date.now()) {
   const persona = state.personas[state.currentPersona];
   const div = document.createElement("div");
@@ -380,7 +337,6 @@ function appendMessageToDOM(role, content, timestamp = Date.now()) {
   return div;
 }
 
-// ─── Typing Indicator ───
 function showTyping() {
   const persona = state.personas[state.currentPersona];
   typingAvatar.textContent = persona.avatar;
@@ -393,13 +349,11 @@ function hideTyping() {
   typingIndicator.style.display = "none";
 }
 
-// ─── Global Functions ───
 window.copyToClipboard = async function(text) {
   try {
     await navigator.clipboard.writeText(text);
     showToast("Copied to clipboard!");
   } catch (err) {
-    // Fallback for older browsers
     const textArea = document.createElement("textarea");
     textArea.value = text;
     document.body.appendChild(textArea);
@@ -414,7 +368,6 @@ window.retryLastMessage = function() {
   const conversation = state.conversations[state.currentPersona];
   if (conversation.length === 0) return;
 
-  // Find the last user message
   for (let i = conversation.length - 1; i >= 0; i--) {
     if (conversation[i].role === "user") {
       messageInput.value = conversation[i].content;
@@ -426,7 +379,6 @@ window.retryLastMessage = function() {
   }
 };
 
-// ─── Utilities ───
 function scrollToBottom() {
   requestAnimationFrame(() => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -443,11 +395,11 @@ function formatTime(timestamp) {
   const now = new Date();
   const diff = now - date;
 
-  if (diff < 60000) { // Less than 1 minute
+  if (diff < 60000) {
     return "now";
-  } else if (diff < 3600000) { // Less than 1 hour
+  } else if (diff < 3600000) {
     return `${Math.floor(diff / 60000)}m ago`;
-  } else if (diff < 86400000) { // Less than 1 day
+  } else if (diff < 86400000) {
     return `${Math.floor(diff / 3600000)}h ago`;
   } else {
     return date.toLocaleDateString();
@@ -455,22 +407,18 @@ function formatTime(timestamp) {
 }
 
 function showToast(message) {
-  // Remove existing toast
   const existingToast = document.querySelector(".toast");
   if (existingToast) {
     existingToast.remove();
   }
 
-  // Create new toast
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.textContent = message;
   document.body.appendChild(toast);
 
-  // Show toast
   setTimeout(() => toast.classList.add("toast--visible"), 10);
 
-  // Hide toast
   setTimeout(() => {
     toast.classList.remove("toast--visible");
     setTimeout(() => toast.remove(), 300);
@@ -484,18 +432,12 @@ function escapeHtml(text) {
 }
 
 function formatMarkdown(text) {
-  // Basic markdown: bold, italic, code, line breaks
   let html = escapeHtml(text);
-  // **bold**
   html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-  // *italic*
   html = html.replace(/\*(.*?)\*/g, "<em>$1</em>");
-  // `code`
   html = html.replace(/`(.*?)`/g, "<code>$1</code>");
-  // Line breaks
   html = html.replace(/\n/g, "<br>");
   return html;
 }
 
-// ─── Start ───
 document.addEventListener("DOMContentLoaded", init);
